@@ -1,0 +1,95 @@
+body {
+    font-family: roboto-regular;
+    background:#efefef;
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none !important;
+}
+
+#face-canvas {
+    background:#000000;
+}
+.container {
+    padding-top:0px;
+}
+
+nav.navbar {
+    background:#4CAF50;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color:white;
+}
+
+.card-container {
+    margin-bottom:20px;
+}
+
+.navbar img {
+    display: inline-block;
+    max-height: 20px;
+    float: left;
+    margin-right:5px;
+}
+
+.text-color-black {
+    color: rgba(0, 0, 0, 0.87);
+}
+.card-header {
+    padding-left:8px;
+
+}
+
+.card {
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #FFF;
+    border: 1px solid #ECECEC;
+    background:white;
+    -webkit-box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.1);
+}
+.canvas-card {
+    padding:19px;
+}
+
+nav.navbar.navbar-default a  {
+    color:white;
+}
+
+@font-face {
+    font-family: roboto-regular;
+    src: url('../fonts/Roboto-Regular.ttf');
+}
+.shape-list {
+    padding-left:0;
+    margin-bottom:0;
+}
+.shape-list li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+.shape-list img {
+    max-height:32px;
+    max-width:32px;
+    background-color:transparent;
+}
+ul li img.active {
+    background-color:#FF9E80;
+}
+
+.layer-container:not(:last-child) {
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+
+.layer-container.active {
+    display:inline-block;
+    width:100%;
+    background:#FF9E80;
+}
