@@ -7,18 +7,15 @@
     <meta name="description" content="Android Wear Watch Face Maker">
     <meta name="author" content="Steve Myers">
     <link rel="icon" href="favicon.ico">
-
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/jquery-ui.min.css" rel="stylesheet">
-    <title>Face Maker</title>
+    <title>FaceMaker</title>
 </head>
 <body ng-cloak>
-
 <nav class="navbar navbar-default navbar-static-top">
-
     <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                 aria-expanded="false" aria-controls="navbar">
@@ -39,11 +36,17 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="card-container">
-                <h4 class="text-color-black card-header">Layer Management</h4>
+                <h4 class="text-color-black card-header">Layers</h4>
 
                 <div class="card layer-card" ng-controller="LayerController">
-                    <div class="layer-container" ng-repeat="layer in layers">
+                    <div ng-hide="layers.length">
+                        <h4>No layers created.</h4>
+                    </div>
+                    <div ng-click="select($index)" class="layer-container" ng-repeat="layer in layers" ng-class="{active: isSelected($index)}">
                         <h4>{{layer.type}}</h4>
+                        <div class="close-container pull-right">
+                            <a href ng-click="deleteLayer($index)"><img src="images/icon-close.png"></a>
+                        </div>
                     </div>
 
                 </div>
@@ -59,11 +62,11 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <section ng-controller="SelectController as selectCtrl">
+            <section>
                 <div class="card-container">
                     <h4 class="text-color-black card-header">Shape</h4>
                     <div class="card">
-                        <ul class="shape-list">
+                        <ul class="shape-list" ng-controller="SelectController as selectCtrl">
                             <li><a ng-click="selectCtrl.select(0)" href>
                                 <img ng-class="{active: selectCtrl.isSelected(0)}" src="images/shape-line.png" class="img-thumbnail"></a></li>
                             <li><a ng-click="selectCtrl.select(1)" href>
@@ -76,7 +79,6 @@
                                 <img ng-class="{active: selectCtrl.isSelected(4)}" src="images/shape-path.png" class="img-thumbnail"></a></li>
                         </ul>
                     </div>
-
                 </div>
                 <div class="card-container">
                     <h4 class="text-color-black card-header">Text</h4>

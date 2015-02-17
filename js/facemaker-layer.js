@@ -13,6 +13,20 @@
                 $scope.layers = model.layers;
             }
         });
-        //$scope.isSelected = function()
+        model.layerSelected = -1;
+
+        $scope.isSelected = function(num) {
+            return model.layerSelected === num;
+        };
+        $scope.select = function(num) {
+            model.layerSelected = num;
+        };
+        $scope.deleteLayer = function(layerNum) {
+            $('#face-canvas').removeLayer(layerNum)
+                .drawLayers();
+            --model.currentDrawingLayer;
+            if (layerNum === model.layerSelected)
+                model.layerSelected = -1;
+        }
     }]);
 })();

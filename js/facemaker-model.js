@@ -8,7 +8,7 @@
 
     app.factory("model", function () {
         return {
-
+            currentDrawingLayer: 0
         };
     });
 })();

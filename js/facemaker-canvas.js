@@ -19,8 +19,6 @@
                 var startX, startY;
                 var currentX, currentY;
 
-                var currentLayNum = 0;
-
                 model.layers = canvas.getLayers();
 
                 canvas.mousedown(function(event){
@@ -44,7 +42,7 @@
                 canvas.mouseup(function(event){
                     if (drawing) {
                         drawing = false;
-                        ++currentLayNum;
+                        ++model.currentDrawingLayer;
                         scope.$digest();
                     }
                 });
@@ -53,7 +51,7 @@
                     var sizeX = currentX - startX;
                     var sizeY = currentY - startY;
 
-                    removeLayerWithRedraw(currentLayNum);
+                    removeLayerWithRedraw(model.currentDrawingLayer);
 
                     switch(toDraw) {
                         case 0:
@@ -66,7 +64,7 @@
                 };
 
                 function removeLayerWithRedraw(layNum) {
-                    canvas.removeLayer(currentLayNum);
+                    canvas.removeLayer(layNum);
                     canvas.drawLayers();
                 };
 
@@ -74,7 +72,7 @@
                     if (drawing) {
                         drawing = false;
                     }
-                    removeLayerWithRedraw(currentLayNum);
+                    removeLayerWithRedraw(model.currentDrawingLayer);
                 };
 
                 function drawLine(startX, startY, endX, endY) {

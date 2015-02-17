@@ -15,7 +15,8 @@
                     var newPos = ui.item.index();
                     var oldPos = ui.item.oldPos;
 
-                    $('#face-canvas').moveLayer(oldPos, newPos).drawLayers();
+                    $('#face-canvas').moveLayer(oldPos, newPos)
+                        .drawLayers();
                 }
             });
             $( ".layer-card" ).disableSelection();

@@ -46,13 +46,18 @@ nav.navbar {
     -khtml-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
-    padding: 10px;
+    padding-left:10px;
+    padding-right:10px;
     background-color: #FFF;
     border: 1px solid #ECECEC;
     background:white;
     -webkit-box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.1);
+}
+.card:not(.layer-card):not(.canvas-card) {
+    padding-top:10px;
+    padding-bottom:10px;
 }
 .canvas-card {
     padding:19px;
@@ -92,4 +97,14 @@ ul li img.active {
     display:inline-block;
     width:100%;
     background:#FF9E80;
+}
+.layer-card h4 {
+    display:inline-block;
+}
+.layer-card .close-container {
+    margin-top:10px;
+
+}
+.close-container img {
+    max-height:18px;
 }
