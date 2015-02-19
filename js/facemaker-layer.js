@@ -27,6 +27,8 @@
             --model.currentDrawingLayer;
             if (layerNum === model.layerSelected)
                 model.layerSelected = -1;
+            if (layerNum < model.layerSelected)
+                --model.layerSelected;
         }
     }]);
 })();

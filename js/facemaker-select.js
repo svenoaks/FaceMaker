@@ -16,5 +16,7 @@
             model.drawSelected = num;
         };
 
+        this.shapes = [ "shape-line.png", "shape-rectangle.png", "shape-circle.png", "shape-triangle.png", "shape-path.png"];
+
     }]);
 })();

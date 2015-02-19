@@ -6,7 +6,7 @@
 (function() {
     "use strict";
 
-    var app = angular.module("canvas", []);
+    var app = angular.module("drawing", []);
 
     app.directive("drawing", [ '$rootScope', 'model', function($rootScope, model){
         return {
@@ -43,7 +43,7 @@
                     if (drawing) {
                         drawing = false;
                         ++model.currentDrawingLayer;
-                        scope.$digest();
+                        $rootScope.$digest();
                     }
                 });
 

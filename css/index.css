@@ -9,6 +9,7 @@ body {
 
 #face-canvas {
     background:#000000;
+    box-shadow: 3px 3px 30px 5px rgba(0, 0, 0, 0.3);
 }
 .container {
     padding-top:0px;
@@ -46,8 +47,7 @@ nav.navbar {
     -khtml-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
-    padding-left:10px;
-    padding-right:10px;
+
     background-color: #FFF;
     border: 1px solid #ECECEC;
     background:white;
@@ -58,10 +58,19 @@ nav.navbar {
 .card:not(.layer-card):not(.canvas-card) {
     padding-top:10px;
     padding-bottom:10px;
+    padding-left:10px;
+    padding-right:10px;
 }
 .canvas-card {
-    padding:19px;
+    padding:36.5px;
+    /*box-shadow: 0 0px 3px 1.5px rgba(0, 0, 0, 0.3);
+    background:#E0E0E0;*/
 }
+.layer-card > div {
+    padding-left:10px;
+    padding-right:10px;
+}
+
 
 nav.navbar.navbar-default a  {
     color:white;
@@ -107,4 +116,16 @@ ul li img.active {
 }
 .close-container img {
     max-height:18px;
+}
+.image-card .img-container {
+    width:33.3%;
+    height:75px;
+    padding:4px;
+    display:inline-block;
+}
+.image-card .img-container:first-of-type {
+    margin-top:8px;
+}
+.image-card button {
+    display:block;
 }

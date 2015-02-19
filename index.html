@@ -34,13 +34,12 @@
 </nav>
 <div class="container">
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="card-container">
                 <h4 class="text-color-black card-header">Layers</h4>
-
                 <div class="card layer-card" ng-controller="LayerController">
-                    <div ng-hide="layers.length">
-                        <h4>No layers created.</h4>
+                   <div ng-hide="layers.length">
+                        <h4>Nothing yet!</h4>
                     </div>
                     <div ng-click="select($index)" class="layer-container" ng-repeat="layer in layers" ng-class="{active: isSelected($index)}">
                         <h4>{{layer.type}}</h4>
@@ -48,35 +47,26 @@
                             <a href ng-click="deleteLayer($index)"><img src="images/icon-close.png"></a>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <div class="card-container">
                 <h4 class="text-color-black card-header">Preview</h4>
 
-                <div class="card canvas-card">
-                    <canvas class="center-block" id="face-canvas" width="320" height="320" drawing></canvas>
+                <div class="card canvas-card" ng-controller="CanvasController">
+                    <canvas class="center-block" id="face-canvas" width="480" height="480" drawing></canvas>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <section>
                 <div class="card-container">
                     <h4 class="text-color-black card-header">Shape</h4>
                     <div class="card">
                         <ul class="shape-list" ng-controller="SelectController as selectCtrl">
-                            <li><a ng-click="selectCtrl.select(0)" href>
-                                <img ng-class="{active: selectCtrl.isSelected(0)}" src="images/shape-line.png" class="img-thumbnail"></a></li>
-                            <li><a ng-click="selectCtrl.select(1)" href>
-                                <img ng-class="{active: selectCtrl.isSelected(1)}" src="images/shape-rectangle.png" class="img-thumbnail"></a></li>
-                            <li><a ng-click="selectCtrl.select(2)" href>
-                                <img ng-class="{active: selectCtrl.isSelected(2)}" src="images/shape-circle.png" class="img-thumbnail"></a></li>
-                            <li><a ng-click="selectCtrl.select(3)" href>
-                                <img ng-class="{active: selectCtrl.isSelected(3)}" src="images/shape-triangle.png" class="img-thumbnail"></a></li>
-                            <li><a ng-click="selectCtrl.select(4)" href>
-                                <img ng-class="{active: selectCtrl.isSelected(4)}" src="images/shape-path.png" class="img-thumbnail"></a></li>
+                            <li ng-repeat="shape in selectCtrl.shapes"><a ng-click="selectCtrl.select($index)" href>
+                                <img ng-class="{active: selectCtrl.isSelected($index)}" ng-src="images/{{shape}}" class="img-thumbnail"></a></li>
                         </ul>
                     </div>
                 </div>
@@ -84,6 +74,21 @@
                     <h4 class="text-color-black card-header">Text</h4>
 
                     <div class="card">
+                    </div>
+                </div>
+                <div class="card-container">
+                    <h4 class="text-color-black card-header">Images</h4>
+
+                    <div class="card image-card">
+                        <div flow-init="{target: '/upload'}"
+                             flow-files-submitted="$flow.upload()"
+                             flow-file-success="$file.msg = $message">
+
+                            <button flow-btn type="button" class="btn btn-default" aria-label="Left Align">Upload...</button>
+                            <div class="img-container" ng-repeat="file in $flow.files">
+                                <a href><img class="img-thumbnail" flow-img="file"></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -103,5 +108,6 @@
 <script src="js/facemaker-app.js"></script>
 <script src="js/facemaker-model.js"></script>
 <script src="js/facemaker-canvas-controller.js"></script>
+<script src="js/ng-flow-standalone.min.js"></script>
 
 </html>
