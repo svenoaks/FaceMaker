@@ -21,7 +21,8 @@
         $scope.select = function(num) {
             model.layerSelected = num;
         };
-        $scope.deleteLayer = function(layerNum) {
+        $scope.deleteLayer = function(layer) {
+            var layerNum = $scope.layers.indexOf(layer);
             $('#face-canvas').removeLayer(layerNum)
                 .drawLayers();
             --model.currentDrawingLayer;

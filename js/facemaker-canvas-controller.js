@@ -19,8 +19,20 @@
                         var newPos = ui.item.index() - HIDDEN_DIV;
                         var oldPos = ui.item.oldPos - HIDDEN_DIV;
 
-                        $('#face-canvas').moveLayer(oldPos, newPos)
-                            .drawLayers();
+                        var canvas = $('#face-canvas');
+
+                        if (oldPos >= newPos)
+                        {
+                            var temp = model.layers[oldPos];
+                            model.layers.splice(oldPos, 1);
+                            model.layers.splice(newPos, 0, temp);
+                        }
+                        else
+                        {
+
+                        }
+                        
+                        canvas.drawLayers();
 
                         if (oldPos === model.layerSelected)
                             model.layerSelected = newPos;

@@ -44,7 +44,7 @@
                     <div ng-click="select($index)" class="layer-container" ng-repeat="layer in layers" ng-class="{active: isSelected($index)}">
                         <h4>{{layer.type}}</h4>
                         <div class="close-container pull-right">
-                            <a href ng-click="deleteLayer($index)"><img src="images/icon-close.png"></a>
+                            <a href ng-click="deleteLayer(layer)"><img src="images/icon-close.png"></a>
                         </div>
                     </div>
                 </div>
