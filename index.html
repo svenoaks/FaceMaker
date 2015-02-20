@@ -35,14 +35,19 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-3">
-            <div class="card-container">
+            <div class="card-container" ng-controller="LayerController">
                 <h4 class="text-color-black card-header">Layers</h4>
-                <div class="card layer-card" ng-controller="LayerController">
-                  <!-- <div ng-hide="layers.length">
+                <div class="card layer-card" ng-hide="layers.length">
+                    <div>
                         <h4>Nothing yet!</h4>
-                    </div>-->
-                    <div ng-click="select($index)" class="layer-container" ng-repeat="layer in layers" ng-class="{active: isSelected($index)}">
+                    </div>
+                </div>
+                <div class="card layer-card" ng-show="layers.length">
+
+                    <div ng-click="select($index)" class="layer-container" ng-repeat="layer in layers"
+                         ng-class="{active: isSelected($index)}">
                         <h4>{{layer.type}}</h4>
+
                         <div class="close-container pull-right">
                             <a href ng-click="deleteLayer(layer)"><img src="images/icon-close.png"></a>
                         </div>
@@ -63,10 +68,12 @@
             <section>
                 <div class="card-container">
                     <h4 class="text-color-black card-header">Shape</h4>
+
                     <div class="card">
                         <ul class="shape-list" ng-controller="SelectController as selectCtrl">
                             <li ng-repeat="shape in selectCtrl.shapes"><a ng-click="selectCtrl.select($index)" href>
-                                <img ng-class="{active: selectCtrl.isSelected($index)}" ng-src="images/{{shape}}" class="img-thumbnail"></a></li>
+                                <img ng-class="{active: selectCtrl.isSelected($index)}" ng-src="images/{{shape}}"
+                                     class="img-thumbnail"></a></li>
                         </ul>
                     </div>
                 </div>
@@ -84,7 +91,8 @@
                              flow-files-submitted="$flow.upload()"
                              flow-file-success="$file.msg = $message">
 
-                            <button flow-btn type="button" class="btn btn-default" aria-label="Left Align">Upload...</button>
+                            <button flow-btn type="button" class="btn btn-default" aria-label="Left Align">Upload...
+                            </button>
                             <div class="img-container" ng-repeat="file in $flow.files">
                                 <a href><img class="img-thumbnail" flow-img="file"></a>
                             </div>
