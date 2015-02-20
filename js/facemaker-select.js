@@ -7,13 +7,16 @@
     var app = angular.module("selection", []);
 
     app.controller("SelectController", [ 'model',  function(model) {
-        model.drawSelected = 0;
+        model.indexSelected = 0;
+        this.TypeEnum = model.DrawingTypeEnum;
 
-        this.isSelected = function(num) {
-            return model.drawSelected === num;
+        this.isSelected = function(type, index) {
+            return type === model.drawingTypeSelected &&
+                model.indexSelected === index;
         };
-        this.select = function(num) {
-            model.drawSelected = num;
+        this.select = function(type, index) {
+            model.drawingTypeSelected = type;
+            model.indexSelected = index;
         };
 
         this.shapes = [ "shape-line.png", "shape-rectangle.png", "shape-circle.png", "shape-triangle.png", "shape-path.png"];

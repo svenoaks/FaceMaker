@@ -6,7 +6,7 @@
 (function() {
     "use strict";
 
-    var app = angular.module("drawing", []);
+    var app = angular.module("drawing", ['flow']);
 
     app.directive("drawing", [ '$rootScope', 'model', function($rootScope, model){
         return {
@@ -35,7 +35,7 @@
                         currentX = event.offsetX;
                         currentY = event.offsetY;
 
-                        beginDraw(model.drawSelected);
+                        beginDraw(model.drawingTypeSelected, model.indexSelected);
                     }
                 });
 
@@ -43,24 +43,35 @@
                     if (drawing) {
                         drawing = false;
                         ++model.currentDrawingLayer;
+                        model.layerSelected = model.currentDrawingLayer - 1;
                         $rootScope.$digest();
                     }
                 });
 
-                function beginDraw(toDraw) {
+                function beginDraw(drawingType, index) {
                     var sizeX = currentX - startX;
                     var sizeY = currentY - startY;
 
                     removeLayerWithRedraw(model.currentDrawingLayer);
 
-                    switch(toDraw) {
-                        case 0:
-                            drawLine(startX, startY, currentX, currentY);
+                    switch(drawingType)
+                    {
+                        case model.DrawingTypeEnum.SHAPE:
+                            switch(index) {
+                                case 0:
+                                    drawLine(startX, startY, currentX, currentY);
+                                    break;
+                                case 1:
+                                    drawRect(startX, startY, sizeX, sizeY);
+                                    break;
+                            };
                             break;
-                        case 1:
-                            drawRect(startX, startY, sizeX, sizeY);
+                        case model.DrawingTypeEnum.IMAGE:
+                            drawImage(startX, startY, sizeX, sizeY);
                             break;
-                    };
+                    }
+
+
                 };
 
                 function removeLayerWithRedraw(layNum) {
@@ -98,6 +109,22 @@
                         layer:true,
                         strokeStyle: '#fff',
                         strokeWidth: 4,
+                        x: startX,
+                        y: startY,
+                        width: sizeX,
+                        height: sizeY,
+                        fromCenter: false,
+                        drag: noDrawOnDrag
+                    });
+                }
+
+                function drawImage(startX, startY, sizeX, sizeY) {
+
+                    canvas.drawImage({
+                        type: 'image',
+                        source: 'images/ic_watch_white_48dp.png',
+                        draggable:true,
+                        layer:true,
                         x: startX,
                         y: startY,
                         width: sizeX,

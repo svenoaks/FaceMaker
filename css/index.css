@@ -94,10 +94,13 @@ nav.navbar.navbar-default a  {
     max-width:32px;
     background-color:transparent;
 }
-ul li img.active {
+ul li img.active, .img-container img.active {
     background-color:#FF9E80;
 }
-
+.img-container img {
+    display:inline-block;
+    max-eight:75px;
+}
 .layer-container:not(:last-child) {
     border-bottom: 1px solid rgba(0,0,0,0.12);
 }
@@ -119,13 +122,15 @@ ul li img.active {
 }
 .image-card .img-container {
     width:33.3%;
-    height:75px;
+
     padding:4px;
     display:inline-block;
 }
 .image-card .img-container:first-of-type {
     margin-top:8px;
 }
+
+
 .image-card button {
     display:block;
 }

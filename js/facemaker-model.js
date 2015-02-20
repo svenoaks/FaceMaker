@@ -8,7 +8,15 @@
 
     app.factory("model", function () {
         return {
-            currentDrawingLayer: 0
+            currentDrawingLayer: 0,
+            DrawingTypeEnum: {
+                SHAPE: 0,
+                TEXT: 1,
+                IMAGE: 2
+            },
+            indexSelected: -1,
+            drawingTypeSelected: -1
+
         };
     });
 })();

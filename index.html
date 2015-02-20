@@ -32,7 +32,7 @@
         </ul>
     </div>
 </nav>
-<div class="container">
+<div class="container" flow-init="{target: '/'}" flow-name="flow">
     <div class="row">
         <div class="col-lg-3">
             <div class="card-container" ng-controller="LayerController">
@@ -43,11 +43,9 @@
                     </div>
                 </div>
                 <div class="card layer-card" ng-show="layers.length">
-
                     <div ng-click="select($index)" class="layer-container" ng-repeat="layer in layers"
                          ng-class="{active: isSelected($index)}">
                         <h4>{{layer.type}}</h4>
-
                         <div class="close-container pull-right">
                             <a href ng-click="deleteLayer(layer)"><img src="images/icon-close.png"></a>
                         </div>
@@ -59,20 +57,23 @@
             <div class="card-container">
                 <h4 class="text-color-black card-header">Preview</h4>
 
-                <div class="card canvas-card" ng-controller="CanvasController">
+                <div class="card canvas-card" ng-controller="CanvasController" flow-init flow-object="flow">
                     <canvas class="center-block" id="face-canvas" width="480" height="480" drawing></canvas>
+                    There are already {{ flow.files.length }} files uploaded,
                 </div>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3" ng-controller="SelectController as selectCtrl">
             <section>
                 <div class="card-container">
                     <h4 class="text-color-black card-header">Shape</h4>
 
                     <div class="card">
-                        <ul class="shape-list" ng-controller="SelectController as selectCtrl">
-                            <li ng-repeat="shape in selectCtrl.shapes"><a ng-click="selectCtrl.select($index)" href>
-                                <img ng-class="{active: selectCtrl.isSelected($index)}" ng-src="images/{{shape}}"
+                        <ul class="shape-list">
+                            <li ng-repeat="shape in selectCtrl.shapes">
+                                <a ng-click="selectCtrl.select(selectCtrl.TypeEnum.SHAPE, $index)" href>
+                                <img ng-class="{active: selectCtrl.isSelected(selectCtrl.TypeEnum.SHAPE, $index)}"
+                                     ng-src="images/{{shape}}"
                                      class="img-thumbnail"></a></li>
                         </ul>
                     </div>
@@ -87,14 +88,16 @@
                     <h4 class="text-color-black card-header">Images</h4>
 
                     <div class="card image-card">
-                        <div flow-init="{target: '/upload'}"
+                        <div
                              flow-files-submitted="$flow.upload()"
                              flow-file-success="$file.msg = $message">
 
                             <button flow-btn type="button" class="btn btn-default" aria-label="Left Align">Upload...
                             </button>
                             <div class="img-container" ng-repeat="file in $flow.files">
-                                <a href><img class="img-thumbnail" flow-img="file"></a>
+                                <a href ng-click="selectCtrl.select(selectCtrl.TypeEnum.IMAGE, $index)">
+                                <img ng-class="{active: selectCtrl.isSelected(selectCtrl.TypeEnum.IMAGE, $index)}"
+                                     class="img-thumbnail" flow-img="file"></a>
                             </div>
                         </div>
                     </div>
