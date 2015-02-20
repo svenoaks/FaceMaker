@@ -1,44 +1,36 @@
 /**
  * Created by Steve on 2/15/15.
  */
-(function() {
+(function () {
     "use strict";
 
     var app = angular.module("canvas", []);
 
-    app.controller("CanvasController", [ '$scope', 'model',  function($scope, model) {
-        $( document ).ready(function() {
-            $(function() {
+    app.controller("CanvasController", ['$rootScope', '$scope', 'model', function ($rootScope, $scope, model) {
+        $(document).ready(function () {
+            $(function () {
 
-                $( ".layer-card" ).sortable({
-                    start: function(event, ui) {
+                $(".layer-card").sortable({
+                    start: function (event, ui) {
                         ui.item.oldPos = ui.item.index();
                     },
-                    stop: function(event, ui) {
+                    stop: function (event, ui) {
                         var HIDDEN_DIV = 1;
-                        var newPos = ui.item.index() - HIDDEN_DIV;
-                        var oldPos = ui.item.oldPos - HIDDEN_DIV;
+                        var newPos = ui.item.index()
+                        var oldPos = ui.item.oldPos;
 
-                        var canvas = $('#face-canvas');
+                        var temp = model.layers[oldPos];
+                        model.layers.splice(oldPos, 1);
+                        model.layers.splice(newPos, 0, temp);
 
-                        if (oldPos >= newPos)
-                        {
-                            var temp = model.layers[oldPos];
-                            model.layers.splice(oldPos, 1);
-                            model.layers.splice(newPos, 0, temp);
-                        }
-                        else
-                        {
-
-                        }
-                        
-                        canvas.drawLayers();
+                        $('#face-canvas').drawLayers();
 
                         if (oldPos === model.layerSelected)
                             model.layerSelected = newPos;
+                        $rootScope.$digest();
                     }
                 });
-                $( ".layer-card" ).disableSelection();
+                $(".layer-card").disableSelection();
             });
         });
 

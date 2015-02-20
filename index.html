@@ -38,9 +38,9 @@
             <div class="card-container">
                 <h4 class="text-color-black card-header">Layers</h4>
                 <div class="card layer-card" ng-controller="LayerController">
-                   <div ng-hide="layers.length">
+                  <!-- <div ng-hide="layers.length">
                         <h4>Nothing yet!</h4>
-                    </div>
+                    </div>-->
                     <div ng-click="select($index)" class="layer-container" ng-repeat="layer in layers" ng-class="{active: isSelected($index)}">
                         <h4>{{layer.type}}</h4>
                         <div class="close-container pull-right">
