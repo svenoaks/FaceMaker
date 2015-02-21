@@ -37,6 +37,7 @@
         <div class="col-lg-3">
             <div class="card-container" ng-controller="LayerController">
                 <h4 class="text-color-black card-header">Layers</h4>
+
                 <div class="card layer-card" ng-hide="layers.length">
                     <div>
                         <h4>Nothing yet!</h4>
@@ -46,6 +47,7 @@
                     <div ng-click="select($index)" class="layer-container" ng-repeat="layer in layers"
                          ng-class="{active: isSelected($index)}">
                         <h4>{{layer.type}}</h4>
+
                         <div class="close-container pull-right">
                             <a href ng-click="deleteLayer(layer)"><img src="images/icon-close.png"></a>
                         </div>
@@ -59,9 +61,34 @@
 
                 <div class="card canvas-card" ng-controller="CanvasController" flow-init flow-object="flow">
                     <canvas class="center-block" id="face-canvas" width="480" height="480" drawing></canvas>
-                    There are already {{ flow.files.length }} files uploaded,
                 </div>
             </div>
+            <div class="card-container">
+                <h4 class="text-color-black card-header">Layer Properties</h4>
+
+                <div class="card" ng-controller="PropertiesController">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="properties-container">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">X Offset</span>
+                                    <input type="text" class="form-control" value="{{xOffset}}" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="properties-container">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon2">Y Offset</span>
+                                    <input type="text" class="form-control" value="{{properties.yOffset}}" aria-describedby="basic-addon2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
         <div class="col-lg-3" ng-controller="SelectController as selectCtrl">
             <section>
@@ -72,9 +99,9 @@
                         <ul class="shape-list">
                             <li ng-repeat="shape in selectCtrl.shapes">
                                 <a ng-click="selectCtrl.select(selectCtrl.TypeEnum.SHAPE, $index)" href>
-                                <img ng-class="{active: selectCtrl.isSelected(selectCtrl.TypeEnum.SHAPE, $index)}"
-                                     ng-src="images/{{shape}}"
-                                     class="img-thumbnail"></a></li>
+                                    <img ng-class="{active: selectCtrl.isSelected(selectCtrl.TypeEnum.SHAPE, $index)}"
+                                         ng-src="images/{{shape}}"
+                                         class="img-thumbnail"></a></li>
                         </ul>
                     </div>
                 </div>
@@ -89,15 +116,15 @@
 
                     <div class="card image-card">
                         <div
-                             flow-files-submitted="$flow.upload()"
-                             flow-file-success="$file.msg = $message">
+                                flow-files-submitted="$flow.upload()"
+                                flow-file-success="$file.msg = $message">
 
                             <button flow-btn type="button" class="btn btn-default" aria-label="Left Align">Upload...
                             </button>
                             <div class="img-container" ng-repeat="file in $flow.files">
                                 <a href ng-click="selectCtrl.select(selectCtrl.TypeEnum.IMAGE, $index)">
-                                <img ng-class="{active: selectCtrl.isSelected(selectCtrl.TypeEnum.IMAGE, $index)}"
-                                     class="img-thumbnail" flow-img="file"></a>
+                                    <img ng-class="{active: selectCtrl.isSelected(selectCtrl.TypeEnum.IMAGE, $index)}"
+                                         class="img-thumbnail" flow-img="file"></a>
                             </div>
                         </div>
                     </div>
@@ -112,13 +139,14 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jcanvas.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
-<script src="js/angular.min.js"></script>
+<script src="js/angular.js"></script>
 <script src="js/facemaker-layer.js"></script>
 <script src="js/facemaker-select.js"></script>
-<script src="js/facemaker-canvas.js"></script>
-<script src="js/facemaker-app.js"></script>
+<script src="js/facemaker-drawing.js"></script>
 <script src="js/facemaker-model.js"></script>
-<script src="js/facemaker-canvas-controller.js"></script>
+<script src="js/facemaker-properties.js"></script>
+<script src="js/facemaker-canvas.js"></script>
 <script src="js/ng-flow-standalone.min.js"></script>
+<script src="js/facemaker-app.js"></script>
 
 </html>
